@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #121317;
+}
+.hero{
+  background-image: url("../assets/images/hero1.png");
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  height: 300px;
+}

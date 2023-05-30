@@ -1,0 +1,8 @@
+<div class="flex sm:flex-row flex-col justify-between items-center w-full gap-5">
+    <%= link_to "api/fetch_post", class: "w-80 sm:w-[50%] h-[300px] bg-[#191A1E] rounded-[40px] border hover:border-[20px] border-white sm:px-0 px-4" do %>   
+        <%= render partial: "post"%>
+    <% end %>
+    <%= link_to "api/fetch_photo", class: "w-80 sm:w-[50%] h-[300px] bg-[#191A1E] rounded-[40px] border hover:border-[20px] border-white sm:px-0 px-4" do %>
+        <%= render partial: "photo"%>    
+    <% end %>
+</div>
