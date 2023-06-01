@@ -6,45 +6,70 @@
         </button>
 </div>
 <script type="text/javascript">
-    
-
-
-
-
-    document.addEventListener('DOMContentLoaded', function(){
-        let photos = document.querySelector('#photos');
-        fetchPhoto("https://jsonplaceholder.typicode.com/photos")
-        var button = document.getElementById("myButton");
-        button.addEventListener("click", submitFunction);
-        var num = 100;
-        function submitFunction() {
-            var incrementAmount = 100; 
-            num += incrementAmount;
-            console.log(num)
-            return num
-        }
-        async function fetchPhoto(url){
-            let data =await fetch(url);
-            let response = await data.json();
-            console.log(response)
-             for(let i = 0; i <= num; i++){
-                 photos.innerHTML +=`
-                
-                    <div class="container mx-auto py-28 px-2 w-full">
+    $("document").ready(function(){
+        var ourRequest = new XMLHttpRequest();
+        ourRequest.open('GET','https://jsonplaceholder.typicode.com/photos')
+        ourRequest.onload = function(){
+            var ourData = JSON.parse(ourRequest.responseText);
+            console.log(ourData)
+            var num = 100;
+            $("#myButton").click(function(){
+                var incrementAmount = 100; 
+                num += incrementAmount;
+                console.log(num)
+                 for(let i = 0; i <= num; i++){
+                    $("#photos").append(`div class="container mx-auto py-28 px-2 w-full">
                             <div class="flex flex-row gap-4 bg-[#191A1E] text-white hover:text-[#1c1c1c] hover:bg-white rounded-2xl p-6 w-full justify-center items-center">
                                 <img
-                                src=${response[i].url}
+                                src=${ourData[i].url}
                                 alt="photos"
                                 class="w-full h-full  object-cover rounded-[30px]"
                                 />
                                 <h1 class="font-bold text-[20px]  capitalize h-[50px] w-full">
-                                ${response[i].title}
+                                ${ourData[i].title}
                                 </h1>
                             </div>
-                     </div>
-                        `;
-             }
-                 console.log(num)
-        } 
+                     </div>`)
+                 }
+
+            })
+        }
+        ourRequest.send();
     })
+    // document.addEventListener('DOMContentLoaded', function(){
+    //     let photos = document.querySelector('#photos');
+    //     fetchPhoto("https://jsonplaceholder.typicode.com/photos")
+    //     var button = document.getElementById("myButton");
+    //     button.addEventListener("click", submitFunction);
+    //     var num = 100;
+    //     function submitFunction() {
+    //         var incrementAmount = 100; 
+    //         num += incrementAmount;
+    //         console.log(num)
+    //         return num
+    //     }
+    //     async function fetchPhoto(url){
+    //         let data =await fetch(url);
+    //         let response = await data.json();
+    //         console.log(response)
+    //          for(let i = 0; i <= num; i++){
+    //              photos.innerHTML +=`
+                
+    //                 <div class="container mx-auto py-28 px-2 w-full">
+    //                         <div class="flex flex-row gap-4 bg-[#191A1E] text-white hover:text-[#1c1c1c] hover:bg-white rounded-2xl p-6 w-full justify-center items-center">
+    //                             <img
+    //                             src=${response[i].url}
+    //                             alt="photos"
+    //                             class="w-full h-full  object-cover rounded-[30px]"
+    //                             />
+    //                             <h1 class="font-bold text-[20px]  capitalize h-[50px] w-full">
+    //                             ${response[i].title}
+    //                             </h1>
+    //                         </div>
+    //                  </div>
+    //                     `;
+    //          }
+    //              console.log(num)
+    //     } 
+    // })
 </script>
